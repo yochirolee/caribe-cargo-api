@@ -5,7 +5,7 @@
  */
 var db = require("mysql2-promise")();
 db.configure({
-	host: "https://systemcaribetravel.com",
+	host: "systemcaribetravel.com",
 	user: "u373067935_caeenvio_mysgc",
 	password: "CaribeAgencia*2022",
 	database: "u373067935_cte",
