@@ -1,15 +1,16 @@
 const express = require("express");
 const app = express();
+const product = require("./api/product");
 const port = 3000;
-app.use(express.json());
+app.use(express.json({ extended: false }));
 app.use(
 	express.urlencoded({
 		extended: true,
 	}),
 );
-app.get("/", (req, res) => {
-	res.json({ message: "ok" });
-});
+
+app.use("/api/product", product);
+
 app.listen(port, () => {
-	console.log(`Example app listening at http://localhost:${port}`);
+	console.log(`Server is Running on port:${port}`);
 });
