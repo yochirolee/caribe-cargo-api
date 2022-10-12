@@ -8,7 +8,9 @@ app.use(
 		extended: true,
 	}),
 );
-
+app.get("/", (req, res) => {
+	res.json({ message: "ok,server is running" });
+});
 app.use("/api/product", product);
 
 app.listen(port, () => {
