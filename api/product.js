@@ -5,10 +5,10 @@
  */
 var db = require("mysql2-promise")();
 db.configure({
-	host: "localhost",
-	user: "root",
+	host: "systemcaribetravel.com",
+	user: "u373067935_caeenvio_mysgc",
 	password: "",
-	database: "system_cte",
+	database: "u373067935_cte",
 });
 
 const getProducts = async () => {
