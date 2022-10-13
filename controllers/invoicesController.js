@@ -7,10 +7,11 @@ const connection = await mysql.createConnection({
 	database: "u373067935_cte",
 });
 
-export const getCustomers = async (req, res) => {
-	connection.connect();
+export const getInvoices = async (req, res) => {
 	try {
-		const [rows] = await connection.execute("SELECT * FROM clientes LIMIT 50");
+		const [rows] = await connection.execute(
+			"select servicio,agencia,cod_factura,fecha,cliente,destinatario,tipo_orden,subtotal,seguro,cargo_extra,descuento,tarjeta_credito,total,pagado,saldo FROM orden_envio LIMIT 50",
+		);
 		res.status(200).json({
 			count: rows.length,
 			data: rows,
@@ -19,13 +20,13 @@ export const getCustomers = async (req, res) => {
 		console.log(err);
 		return res.status(404).send(err.code);
 	}
-	connection.destroy();
 };
 
-export const getCustomersByMobile = async (req, res) => {
-	const { mobile } = req.params;
+export const getInvoicesById = async (req, res) => {
+	console.log(req.params);
+	const { id } = req.params;
 	try {
-		const [rows] = await connection.execute("SELECT * FROM clientes WHERE cel=?", [mobile]);
+		const [rows] = await connection.execute("SELECT * FROM orden_envio WHERE cod_factura=?", [id]);
 		res.status(200).json({ data: rows });
 	} catch (err) {
 		console.log(err);
