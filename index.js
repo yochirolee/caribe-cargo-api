@@ -1,6 +1,8 @@
-const express = require("express");
+import express from "express";
+import productRoutes from "./routes/productRoute.js";
+import customersRoutes from "./routes/customersRoutes.js";
+
 const app = express();
-const product = require("./api/product");
 const port = 3000;
 app.use(express.json({ extended: false }));
 app.use(
@@ -11,7 +13,9 @@ app.use(
 app.get("/", (req, res) => {
 	res.json({ message: "ok,server is running" });
 });
-app.use("/api/product", product);
+
+app.use("/api/product", productRoutes);
+app.use("/api/customers", customersRoutes);
 
 app.listen(port, () => {
 	console.log(`Server is Running on port:${port}`);
