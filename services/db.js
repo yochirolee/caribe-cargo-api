@@ -1,20 +1,16 @@
+import mysql from "mysql2/promise";
+import { config } from "../config/config.js";
 
-var db = require("mysql2-promise")();
+const connection = await mysql.createConnection(config);
+connection.connect();
 
-async function query(sql, params) {
-	db.configure({
-		host: "localhost",
-		user: "root",
-		password: "",
-		database: "system_cte",
-	});
-	db.query("SELECT * FROM usu").spread(function (users) {
-		console.log("Hello users", users);
-	});
+export const query = async (sql, params = []) => {
+	try {
+		const [rows] = await connection.execute(sql, params);
 
-	return results;
-}
-
-module.exports = {
-	query,
+		return rows;
+	} catch (error) {
+		console.log(error);
+		return error;
+	}
 };
