@@ -17,7 +17,7 @@ export const getCustomers = async (req, res) => {
 export const getCustomersByMobile = async (req, res) => {
 	const { mobile } = req.params;
 	try {
-		const [rows] = await query("SELECT * FROM clientes WHERE cel=?", [mobile]);
+		const rows = await query("SELECT * FROM clientes WHERE cel=?", [mobile]);
 		res.status(200).json({ data: rows });
 	} catch (err) {
 		console.log(err);

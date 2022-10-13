@@ -11,6 +11,7 @@ export const query = async (sql, params = []) => {
 		return rows;
 	} catch (error) {
 		console.log(error);
+		connection.destroy();
 		return error;
 	}
 };
