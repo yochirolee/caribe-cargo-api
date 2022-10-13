@@ -1,11 +1,9 @@
 import mysql from "mysql2/promise";
 import { config } from "../config/config.js";
 
-const connection = await mysql.createConnection(config);
-
 export const query = async (sql, params = []) => {
+	const connection = await mysql.createConnection(config);
 	try {
-		await connection.connect();
 		const [rows] = await connection.execute(sql, params);
 
 		return rows;
