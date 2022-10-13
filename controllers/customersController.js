@@ -3,7 +3,6 @@ import { query } from "../services/db.js";
 export const getCustomers = async (req, res) => {
 	try {
 		const rows = await query("SELECT * FROM clientes LIMIT 50");
-		console.log(rows);
 		res.status(200).json({
 			count: rows.length,
 			data: rows,
