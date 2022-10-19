@@ -5,7 +5,6 @@ export const query = async (sql, params = []) => {
 	const connection = await mysql.createConnection(config);
 	try {
 		const [rows] = await connection.execute(sql, params);
-
 		return rows;
 	} catch (error) {
 		console.log(error);

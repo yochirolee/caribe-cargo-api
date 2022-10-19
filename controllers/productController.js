@@ -1,8 +1,8 @@
-import { query } from "../services/db.js";
+import { db_getProductById, db_getProducts } from "../database/dbProducts.js";
 
 export const getProducts = async (req, res) => {
 	try {
-		const rows = await query("SELECT * FROM online_productos");
+		const rows = await db_getProducts();
 		res.status(200).json({
 			count: rows.length,
 			data: rows,
@@ -16,7 +16,7 @@ export const getProducts = async (req, res) => {
 export const getProductById = async (req, res) => {
 	const { id } = req.params;
 	try {
-		const rows = await query("SELECT * FROM online_productos WHERE id=?", [id]);
+		const rows = await db_getProductById(id);
 		res.status(200).json({ rows });
 	} catch (err) {
 		console.log(err);

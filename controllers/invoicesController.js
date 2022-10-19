@@ -1,10 +1,10 @@
-import { query } from "../services/db.js";
+import { db_getCustomersById } from "../database/dbCustomers.js";
+import { db_getInvoiceById, db_getInvoices } from "../database/dbInvoices.js";
+import { db_getRecieverById } from "../database/dbRecievers.js";
 
 export const getInvoices = async (req, res) => {
 	try {
-		const rows = await query(
-			"select servicio,agencia,cod_factura,fecha,cliente,destinatario,tipo_orden,subtotal,seguro,cargo_extra,descuento,tarjeta_credito,total,pagado,saldo FROM orden_envio LIMIT 50",
-		);
+		const rows = await db_getInvoices();
 
 		res.status(200).json({
 			count: rows.length,
@@ -19,7 +19,11 @@ export const getInvoices = async (req, res) => {
 export const getInvoicesById = async (req, res) => {
 	const { id } = req.params;
 	try {
-		const [rows] = await query("SELECT * FROM orden_envio WHERE cod_factura=?", [id]);
+		const [rows] = await db_getInvoiceById(id);
+
+		rows.cliente = await db_getCustomersById(rows.cliente);
+		rows.destinatario = await db_getRecieverById(rows.destinatario);
+
 		res.status(200).json({ data: rows });
 	} catch (err) {
 		console.log(err);
