@@ -30,3 +30,4 @@ export const getInvoicesById = async (req, res) => {
 		return res.status(404).send(err.code);
 	}
 };
+

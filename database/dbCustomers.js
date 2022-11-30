@@ -9,5 +9,8 @@ export const db_getCustomersById = async (id) => {
 };
 
 export const db_getCustomersByMobile = async (mobile) => {
-	return await query("SELECT * FROM clientes WHERE cel=?", [mobile]);
+	return await query(
+		"SELECT clientes.nombre as customer_name, destinatarios.nombre FROM clientes INNER JOIN destinatarios ON clientes.codigo=destinatarios.codigo LIMIT 50   ",
+		[mobile],
+	);
 };
