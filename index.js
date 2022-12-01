@@ -17,6 +17,9 @@ app.get("/", (req, res) => {
 	res.json({ message: "ok,server is running" });
 });
 
+app.use(cors({
+    origin: '*'
+}));
 app.use("/api/product", productRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/invoices", invoicesRoutes);
