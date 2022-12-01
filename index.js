@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 import productRoutes from "./routes/productRoute.js";
 import customersRoutes from "./routes/customersRoutes.js";
 import invoicesRoutes from "./routes/invoicesRoutes.js";
@@ -17,9 +18,11 @@ app.get("/", (req, res) => {
 	res.json({ message: "ok,server is running" });
 });
 
-app.use(cors({
-    origin: '*'
-}));
+app.use(
+	cors({
+		origin: "*",
+	}),
+);
 app.use("/api/product", productRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/invoices", invoicesRoutes);
