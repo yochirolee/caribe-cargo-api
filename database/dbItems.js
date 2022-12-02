@@ -12,3 +12,14 @@ export const db_getItemById = async (id) => {
 		[id],
 	);
 };
+
+
+export const db_findItems = async (items) => {
+	const parseItems = items.map((item) => "'" + item + "'");
+
+	return await query(
+		"SELECT codigo_paquete as HBL,descripcion as Description,destinatario as RecieverId, estado as Location,cod_envio as InvoiceId,num_contenedor as Container FROM orden_envio_emp_det WHERE codigo_paquete IN (" +
+			parseItems +
+			")",
+	);
+};
