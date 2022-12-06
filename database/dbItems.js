@@ -2,7 +2,7 @@ import { query } from "../services/db.js";
 
 export const db_getItems = async () => {
 	return await query(
-		"SELECT codigo_paquete,descripcion,destinatario, estado,cod_envio,num_contenedor FROM orden_envio_emp_det LIMIT 50",
+		"SELECT codigo_paquete as HBL,descripcion as Description,destinatario as Reciever, estado as State,cod_envio as InvoiceId,num_contenedor as ContainerNumber FROM orden_envio_emp_det LIMIT 50",
 	);
 };
 

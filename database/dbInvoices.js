@@ -2,7 +2,7 @@ import { query } from "../services/db.js";
 
 export const db_getInvoices = async () => {
 	return await query(
-		"SELECT clientes.nombre AS CustomerName,codigo_paquete,orden_envio_emp_det.descripcion, orden_envio.destinatario, orden_envio.cod_envio as InvoiceId FROM `orden_envio` INNER JOIN orden_envio_emp_det ON orden_envio.cod_envio=orden_envio_emp_det.cod_envio INNER JOIN clientes ON orden_envio.cliente=clientes.codigo Limit 50 ",
+		"SELECT clientes.nombre AS CustomerName,codigo_paquete as InvoiceId,orden_envio_emp_det.descripcion, orden_envio.destinatario, orden_envio.cod_envio as InvoiceId FROM `orden_envio` INNER JOIN orden_envio_emp_det ON orden_envio.cod_envio=orden_envio_emp_det.cod_envio INNER JOIN clientes ON orden_envio.cliente=clientes.codigo Limit 50 ",
 	);
 };
 
