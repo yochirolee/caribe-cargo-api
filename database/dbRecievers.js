@@ -6,15 +6,25 @@ export const db_getRecievers = async () => {
 
 export const db_getRecieverById = async (id) => {
 	const [result] = await query("SELECT * FROM destinatarios WHERE codigo=?", [id]);
+	const [state] = await query("SELECT ciudad as Province FROM ciudades where id=?", [
+		result.estado,
+	]);
+	const [city] = await query("SELECT ciudad as Municipality FROM ciudades_cuba where codigo=?", [
+		result.ciudad,
+	]);
 	const reciever = {};
 
-	reciever.name = result.nombre + " " + result.nombre2;
-	reciever.lastName = result.apellido + " " + result.apellido2;
-	reciever.mobile = result.cel;
-	reciever.phone = result.tel;
-	reciever.ci = result.documento;
-	reciever.passport = result.pasaporte;
-
+	reciever.Name = result.nombre + " " + result.nombre2;
+	reciever.LastName = result.apellido + " " + result.apellido2;
+	reciever.Mobile = result.cel;
+	reciever.Phone = result.tel;
+	reciever.CI = result.documento;
+	reciever.Passport = result.pasaporte;
+	reciever.Address =
+		result.cll + "" + result.entre_cll + " " + result.no + " " + result.apto + " " + result.reparto;
+	reciever.agency = result.agencia;
+	reciever.Province = state.Province;
+	reciever.Municipality = city.Municipality;
 	return reciever;
 };
 

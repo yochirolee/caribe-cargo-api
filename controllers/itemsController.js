@@ -1,3 +1,4 @@
+import { db_getCustomersById } from "../database/dbCustomers.js";
 import { db_getItems, db_getItemById, db_findItems } from "../database/dbItems.js";
 import { db_getRecieverById } from "../database/dbRecievers.js";
 
@@ -20,7 +21,8 @@ export const getItemById = async (req, res) => {
 		const [rows] = await db_getItemById(id);
 
 		if (rows) {
-			rows.destinatario = await db_getRecieverById(rows.destinatario);
+			rows.Customer = await db_getCustomersById(rows.CustomerId);
+			rows.Reciever = await db_getRecieverById(rows.RecieverId);
 			res.status(200).json({ data: rows });
 		} else {
 			res.status(400).json({ data: `Item ${id} No Found` });

@@ -5,7 +5,17 @@ export const db_getCustomers = async () => {
 };
 
 export const db_getCustomersById = async (id) => {
-	return await query("SELECT * FROM clientes WHERE codigo=?", [id]);
+	const [result] = await query("SELECT * FROM clientes WHERE codigo=?", [id]);
+	const customer = {};
+
+	customer.Name = result.nombre + " " + result.nombre2;
+	customer.LastName = result.apellido + " " + result.apellido2;
+	customer.Mobile = result.cel;
+	customer.Phone = result.tel;
+	customer.License = result.documento;
+	customer.Passport = result.pasaporte;
+
+	return customer;
 };
 
 export const db_getCustomersByMobile = async (mobile) => {
