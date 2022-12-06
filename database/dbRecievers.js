@@ -21,7 +21,15 @@ export const db_getRecieverById = async (id) => {
 	reciever.CI = result.documento;
 	reciever.Passport = result.pasaporte;
 	reciever.Address =
-		result.cll + "" + result.entre_cll + " " + result.no + " " + result.apto + " " + result.reparto;
+		result.cll +
+		" " +
+		result.entre_cll +
+		" " +
+		result.no +
+		" " +
+		result.apto +
+		" " +
+		result.reparto;
 	reciever.agency = result.agencia;
 	reciever.Province = state.Province;
 	reciever.Municipality = city.Municipality;
