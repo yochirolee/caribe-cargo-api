@@ -11,7 +11,7 @@ export const getItems = async (req, res) => {
 		});
 	} catch (err) {
 		console.log(err);
-		return res.status(404).send(err.code);
+		return res.status(200).send(err.code);
 	}
 };
 
@@ -25,7 +25,7 @@ export const getItemById = async (req, res) => {
 			rows.Reciever = await db_getRecieverById(rows.RecieverId);
 			res.status(200).json({ data: rows });
 		} else {
-			res.status(400).json({ data: `Item ${id} No Found` });
+			res.status(200).json({ data: `Item ${id} No Found` });
 		}
 	} catch (err) {
 		console.log(err);

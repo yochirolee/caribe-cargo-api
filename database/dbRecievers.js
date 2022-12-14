@@ -25,12 +25,12 @@ export const db_getRecieverById = async (id) => {
 		" " +
 		result.entre_cll +
 		" " +
+		"No: " +
 		result.no +
 		" " +
 		result.apto +
 		" " +
 		result.reparto;
-	reciever.agency = result.agencia;
 	reciever.Province = state.Province;
 	reciever.Municipality = city.Municipality;
 	return reciever;
