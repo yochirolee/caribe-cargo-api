@@ -24,7 +24,7 @@ export const getInvoicesById = async (req, res) => {
 		rows.Customer = await db_getCustomersById(rows.CustomerId);
 		rows.Reciever = await db_getRecieverById(rows.RecieverId);
 
-		res.status(200).json({ data: rows });
+		res.status(200).json(rows );
 	} catch (err) {
 		console.log(err);
 		return res.status(404).send(err.code);
