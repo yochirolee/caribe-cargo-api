@@ -23,7 +23,7 @@ app.use(
 		origin: "*",
 	}),
 );
-app.use("/api/product", productRoutes);
+app.use("/api/products", productRoutes);
 app.use("/api/customers", customersRoutes);
 app.use("/api/invoices", invoicesRoutes);
 app.use("/api/recievers", recieversRoutes);

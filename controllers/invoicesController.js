@@ -20,7 +20,7 @@ export const getInvoicesById = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const [rows] = await db_getInvoiceById(id);
-        rows.Items=await db_getItemsInvoiceById(id);
+        rows.Products=await db_getItemsInvoiceById(id);
 		rows.Customer = await db_getCustomersById(rows.CustomerId);
 		rows.Reciever = await db_getRecieverById(rows.RecieverId);
 
