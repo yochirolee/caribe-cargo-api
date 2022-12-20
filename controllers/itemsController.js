@@ -1,6 +1,9 @@
-import { db_getCustomersById } from "../database/dbCustomers.js";
-import { db_getItems, db_getItemById, db_findItems } from "../database/dbItems.js";
-import { db_getRecieverById } from "../database/dbRecievers.js";
+import {
+	db_getItems,
+	db_getItemById,
+	db_findItems,
+	db_getItemsByHBL,
+} from "../database/dbItems.js";
 
 export const getItems = async (req, res) => {
 	try {
@@ -17,8 +20,14 @@ export const getItems = async (req, res) => {
 
 export const getItemById = async (req, res) => {
 	const { id } = req.params;
+	console.log(id.length, "ITEMS");
+	let rows = [];
 	try {
-		const rows = await db_getItemById(id);
+		if (id.length < 5) {
+			rows = await db_getItemById(id);
+		} else {
+			rows = await db_getItemsByHBL(id);
+		}
 
 		res.status(200).json({ data: rows });
 	} catch (err) {
