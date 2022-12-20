@@ -7,10 +7,16 @@ export const db_getItems = async () => {
 };
 
 export const db_getItemById = async (InvoiceId) => {
-	return await query(
-		"SELECT cod_envio as Invoice, no_paquete as HBL, descripcion as Description, cod_estado as Location, contenedor as Container,conntenido as OrderType, descripcion as Description,peso as Weight, num_contenedor as ContainerNumber,nom_agencia as Agency, tipo as Type,pallet as Pallet,cod_estado as Location from listado_paquetes  where cod_envio=?  ",
-		[InvoiceId],
-	);
+	if (InvoiceId.lenght <= 5)
+		return await query(
+			"SELECT cod_envio as Invoice, no_paquete as HBL, descripcion as Description, cod_estado as Location, contenedor as Container,conntenido as OrderType, descripcion as Description,peso as Weight, num_contenedor as ContainerNumber,nom_agencia as Agency, tipo as Type,pallet as Pallet,cod_estado as Location from listado_paquetes  where cod_envio=?  ",
+			[InvoiceId],
+		);
+	else
+		return await query(
+			"SELECT cod_envio as Invoice, no_paquete as HBL, descripcion as Description, cod_estado as Location, contenedor as Container,conntenido as OrderType, descripcion as Description,peso as Weight, num_contenedor as ContainerNumber,nom_agencia as Agency, tipo as Type,pallet as Pallet,cod_estado as Location from listado_paquetes  where no_paquete=?  ",
+			[InvoiceId],
+		);
 };
 
 export const db_findItems = async (items) => {
