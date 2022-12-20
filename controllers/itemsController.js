@@ -18,15 +18,9 @@ export const getItems = async (req, res) => {
 export const getItemById = async (req, res) => {
 	const { id } = req.params;
 	try {
-		const [rows] = await db_getItemById(id);
+		const rows = await db_getItemById(id);
 
-		if (rows) {
-			rows.Customer = await db_getCustomersById(rows.CustomerId);
-			rows.Reciever = await db_getRecieverById(rows.RecieverId);
-			res.status(200).json({ data: rows });
-		} else {
-			res.status(200).json({ data: `Item ${id} No Found` });
-		}
+		res.status(200).json({ data: rows });
 	} catch (err) {
 		console.log(err);
 		return res.status(404).send(err.code);

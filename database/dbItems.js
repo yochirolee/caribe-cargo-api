@@ -6,10 +6,10 @@ export const db_getItems = async () => {
 	);
 };
 
-export const db_getItemById = async (id) => {
+export const db_getItemById = async (InvoiceId) => {
 	return await query(
-		"SELECT codigo_paquete as HBL,orden_envio.cod_envio as InvoiceId, descripcion as Description,orden_envio.cliente as CustomerId,orden_envio.destinatario as RecieverId , estado,num_contenedor as ContainerNumber, pallet as Pallet, agencias.nombre as Agency FROM orden_envio_emp_det INNER JOIN orden_envio ON orden_envio_emp_det.cod_envio=orden_envio.cod_envio INNER JOIN agencias ON orden_envio_emp_det.agencia=agencias.id WHERE codigo_paquete=?",
-		[id],
+		"SELECT cod_envio as Invoice, no_paquete as HBL, descripcion as Description, cod_estado as Location, contenedor as Container,conntenido as OrderType, descripcion as Description,peso as Weight, num_contenedor as ContainerNumber,nom_agencia as Agency, tipo as Type,pallet as Pallet,cod_estado as Location from listado_paquetes  where cod_envio=?  ",
+		[InvoiceId],
 	);
 };
 
