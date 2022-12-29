@@ -6,8 +6,7 @@ export const getProducts = async (req, res) => {
 	try {
 		const rows = await db_getProducts();
 		res.status(200).json({
-			count: rows.length,
-			data: rows,
+			rows,
 		});
 	} catch (err) {
 		console.log(err);
