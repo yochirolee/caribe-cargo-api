@@ -4,10 +4,7 @@ import { db_getRecieverById } from "../database/dbRecievers.js";
 
 export const getProducts = async (req, res) => {
 	try {
-		const rows = await db_getProducts();
-		res.status(200).json({
-			rows,
-		});
+		res.status(200).json(await db_getProducts());
 	} catch (err) {
 		console.log(err);
 		return res.status(200).send(err.code);
