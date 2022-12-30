@@ -6,6 +6,7 @@ import invoicesRoutes from "./routes/invoicesRoutes.js";
 import recieversRoutes from "./routes/recieversRoutes.js";
 import itemsRoutes from "./routes/itemsRoutes.js";
 import containersRoutes from "./routes/containersRoutes.js";
+import palletsRoutes from './routes/palletsRoutes.js'
 
 const app = express();
 const port = 3000;
@@ -30,6 +31,7 @@ app.use("/api/invoices", invoicesRoutes);
 app.use("/api/recievers", recieversRoutes);
 app.use("/api/items", itemsRoutes);
 app.use("/api/containers", containersRoutes);
+app.use("/api/pallets", palletsRoutes);
 
 app.listen(port, () => {
 	console.log(`Server is Running on port:${port}`);
