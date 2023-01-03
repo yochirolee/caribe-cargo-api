@@ -1,4 +1,9 @@
-import { db_getPalletById, db_getPallets, db_getProductsbyPalletId } from "../database/dbPallets.js";
+import {
+	db_getInvoicesByPalletId,
+	db_getPalletById,
+	db_getPallets,
+	db_getProductsbyPalletId,
+} from "../database/dbPallets.js";
 
 export const getPallets = async (req, res) => {
 	try {
@@ -14,7 +19,6 @@ export const getPallets = async (req, res) => {
 };
 
 export const getPalletAndProductsByPalletId = async (req, res) => {
-	console.log(req.params);
 	const { id } = req.params;
 	try {
 		const [pallet] = await db_getPalletById(id);
