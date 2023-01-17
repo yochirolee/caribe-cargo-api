@@ -15,13 +15,16 @@ export const getProductById = async (req, res) => {
 	const { id } = req.params;
 	try {
 		const [rows] = await db_getProductById(id);
-
 		if (rows) {
-			rows.Customer = await db_getCustomersById(rows.CustomerId);
 			rows.Reciever = await db_getRecieverById(rows.RecieverId);
-			res.status(200).json({ data: rows });
+			if (rows.CustomerId !== 0) {
+				rows.Customer = await db_getCustomersById(rows.CustomerId);
+			} else {
+				rows.Customer = rows.Reciever;
+			}
+			res.status(200).json(rows);
 		} else {
-			res.status(200).json({ data: `Product ${id} No Found` });
+			res.status(200).json(rows);
 		}
 	} catch (err) {
 		console.log(err);
