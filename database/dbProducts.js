@@ -13,14 +13,10 @@ export const db_getProductById = async (id) => {
 	);
 };
 
-export const db_findProducts = async (products) => {
-	const parseProducts = products.map((product) => "'" + product + "'");
+export const db_findProducts = async (ListHBL) => {
+	const parseHblList = ListHBL?.map((hbl) => "'" + hbl + "'");
 
-	return await query(
-		"SELECT codigo_paquete as HBL,descripcion as Description,destinatario as RecieverId, destinatarios.nombre,  destinatarios.apellido, orden_envio_emp_det.estado as Location,cod_envio as InvoiceId,num_contenedor as Container,pallet as Pallet FROM orden_envio_emp_det INNER JOIN destinatarios ON destinatario=destinatarios.codigo, INNER JOIN agencias ON orden_envio_emp_det.agencia=agencias.id WHERE codigo_paquete IN (" +
-			parseProducts +
-			")",
-	);
+	return await query("SELECT * from tracking where HBL IN (" + parseHblList + ")");
 };
 
 export const db_getProductsByContainerId = async (ContainerId) => {
