@@ -33,10 +33,9 @@ export const getProductById = async (req, res) => {
 };
 
 export const findProducts = async (req, res) => {
-	const Products = req.body;
-	let HBL = Products.map((Product) => Product.HBL);
+	const hbl = req.body;
 	try {
-		const rows = await db_findProducts(HBL);
+		const rows = await db_findProducts(hbl);
 		if (rows) {
 			res.status(200).json({ data: rows });
 		}

@@ -4,7 +4,7 @@ import { getProducts, getProductById, findProducts } from "../controllers/produc
 
 const router = express.Router();
 
-router.get("/", findProducts);
+router.post("/", findProducts);
 router.get("/:id", getProductById);
 //router.post("/:id", createProduct);
 //router.get("/:id", updateProduct);

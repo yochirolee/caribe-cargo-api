@@ -14,7 +14,8 @@ export const db_getProductById = async (id) => {
 };
 
 export const db_findProducts = async (ListHBL) => {
-	const parseHblList = ListHBL?.map((hbl) => "'" + hbl + "'");
+	console.log(ListHBL, "listado hbls");
+	const parseHblList = ListHBL?.map((hbl) => "'" + hbl.HBL + "'");
 
 	return await query("SELECT * from tracking where HBL IN (" + parseHblList + ")");
 };
