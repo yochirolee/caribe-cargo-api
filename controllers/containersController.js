@@ -2,6 +2,7 @@ import {
 	db_getContainers,
 	db_getContainerById,
 	db_getContainerByState,
+	db_getContainerProductsGroupByCity,
 } from "../database/dbContainers.js";
 import { db_getProductsByContainerId } from "../database/dbProducts.js";
 
@@ -35,7 +36,10 @@ export const getContainerById = async (req, res) => {
 	try {
 		const [container] = await db_getContainerById(id);
 		const products = await db_getProductsByContainerId(container?.ContainerId);
-		res.status(200).json({ data: container, products });
+		const productsInContainerGroupByCity = await db_getContainerProductsGroupByCity(
+			container?.ContainerId,
+		);
+		res.status(200).json({ data: container, products, productsInContainerGroupByCity });
 	} catch (err) {
 		console.log(err);
 		return res.status(404).send(err.code);

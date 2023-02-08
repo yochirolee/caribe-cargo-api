@@ -13,6 +13,13 @@ export const db_getContainerByState = async (containerState) => {
 	);
 };
 
+export const db_getContainerProductsGroupByCity = async (ContainerId) => {
+	return await query(
+		"select count(InvoiceId) as InvoiceCount,StateId,CityId, ciudades.ciudad as Provincia, ciudades_cuba.ciudad as Municipio from tracking inner join ciudades on ciudades.id=StateId inner join ciudades_cuba on ciudades_cuba.codigo=CityId where ContainerId=? group by StateId,CityId",
+		[ContainerId],
+	);
+};
+
 export const db_getContainerById = async (id) => {
 	const result = await query(
 		"SELECT codigo as ContainerId, fecha as StartLoadingDate, fecha_salida  as EndLoadingDate, master as Master, paquetes as ProductsQuantity,peso as Weight, sello as SealedNumber, estado as State,numero as ContainerNumber  FROM contenedores WHERE codigo=? ",
