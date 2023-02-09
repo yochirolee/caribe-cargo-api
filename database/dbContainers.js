@@ -13,9 +13,11 @@ export const db_getContainerByState = async (containerState) => {
 	);
 };
 
-export const db_getContainerProductsGroupByCity = async (ContainerId) => {
+
+
+export const db_getStopsByRecieversInContainerGroupByCities = async (ContainerId) => {
 	return await query(
-		"select count(distinct InvoiceId) as InvoiceCount,StateId,CityId, ciudades.ciudad as Provincia, ciudades_cuba.ciudad as Municipio from tracking inner join ciudades on ciudades.id=StateId inner join ciudades_cuba on ciudades_cuba.codigo=CityId where ContainerId=? group by StateId,CityId",
+		"select count(distinct RecieverId) as Stops,count( distinct InvoiceId) as InvoicesCount, count(HBL) as HBLCount, StateId,CityId, ciudades.ciudad as Provincia, ciudades_cuba.ciudad as Municipio from tracking inner join ciudades on ciudades.id=StateId inner join ciudades_cuba on ciudades_cuba.codigo=CityId where ContainerId=? group by StateId,CityId ",
 		[ContainerId],
 	);
 };
