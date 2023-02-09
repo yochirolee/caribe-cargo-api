@@ -47,8 +47,8 @@ export const getContainerById = async (req, res) => {
 export const getContainersStopsByRecievers = async (req, res) => {
 	const { id } = req.params;
 	try {
-		const stopsByReciervers = await db_getStopsByRecieversInContainerGroupByCities(id);
-		res.status(200).json({ stopsByReciervers });
+		const rows = await db_getStopsByRecieversInContainerGroupByCities(id);
+		res.status(200).json(rows);
 	} catch (err) {
 		console.log(err);
 		return res.status(404).send(err.code);
