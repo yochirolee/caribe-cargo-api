@@ -31,7 +31,7 @@ export const db_getContainerById = async (id) => {
 
 export const db_getIncomeByContainerId = async (id) => {
 	const result = await query(
-		"SELECT orden_envio_emp_det.agencia as AgencyId, orden_envio_emp_det.cod_envio as InvoiceId, orden_envio_emp_det.codigo_paquete as HBL, tipo_producto as ProductType, peso as Weight, descripcion as Description, costo_agencia as AgencyPayment, delivery as DeliveryCost FROM orden_envio_emp_det inner join orden_envio on orden_envio.cod_envio=orden_envio_emp_det.cod_envio where contenedor=?  ",
+		"SELECT orden_envio_emp_det.agencia as AgencyId, agencias.nombre as AgencyName, orden_envio_emp_det.cod_envio as InvoiceId, orden_envio_emp_det.codigo_paquete as HBL, tipo_producto as ProductType, peso as Weight, descripcion as Description, costo_agencia as AgencyPayment, delivery as DeliveryCost FROM orden_envio_emp_det inner join orden_envio on orden_envio.cod_envio=orden_envio_emp_det.cod_envio inner join agencias on agencias.id=orden_envio_emp_det.agencia where contenedor=?  ",
 		[id],
 	);
 
