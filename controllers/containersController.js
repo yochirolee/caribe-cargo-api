@@ -3,7 +3,7 @@ import {
 	db_getContainerById,
 	db_getContainerByState,
 	db_getStopsByRecieversInContainerGroupByCities,
-	db_getIncomeByContainerId,
+	db_getReportByContainerId,
 } from "../database/dbContainers.js";
 import { db_getProductsByContainerId } from "../database/dbProducts.js";
 
@@ -56,11 +56,11 @@ export const getContainersStopsByRecievers = async (req, res) => {
 	}
 };
 
-export const getIncomeByContainerId = async (req, res) => {
+export const getReportByContainerId = async (req, res) => {
 	const { id } = req.params;
 	console.log(res.params);
 	try {
-		const rows = await db_getIncomeByContainerId(id);
+		const rows = await db_getReportByContainerId(id);
 		res.status(200).json(rows);
 	} catch (err) {
 		console.log(err);
