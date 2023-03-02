@@ -30,7 +30,10 @@ export const db_getContainerById = async (id) => {
 };
 
 export const db_getReportByContainerId = async (id) => {
-	const result = await query("SELECT * from view_reports_by_container where contenedor=?  ", [id]);
+	const result = await query(
+		"SELECT * from view_reports_by_container where ContainerId=?  ",
+		[id],
+	);
 
 	return result;
 };
