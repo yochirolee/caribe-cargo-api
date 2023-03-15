@@ -18,3 +18,9 @@ export const db_getItemsInvoiceById = async (InvoiceId) => {
 		[InvoiceId],
 	);
 };
+
+export const db_getInvoicesByDate = async (startDate, endDate) => {
+	return await query(
+		`SELECT *  FROM u373067935_cte.listado_ordenes where fecha between '${startDate}' and '${endDate}'`,
+	);
+};

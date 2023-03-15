@@ -2,6 +2,7 @@ import { db_getCustomersById } from "../database/dbCustomers.js";
 import {
 	db_getInvoiceById,
 	db_getInvoices,
+	db_getInvoicesByDate,
 	db_getItemsInvoiceById,
 } from "../database/dbInvoices.js";
 import { db_getRecieverById } from "../database/dbRecievers.js";
@@ -32,6 +33,20 @@ export const getInvoicesById = async (req, res) => {
 			rows.Customer = rows.Reciever;
 		}
 		res.status(200).json(rows);
+	} catch (err) {
+		console.log(err);
+		return res.status(404).send(err.code);
+	}
+};
+
+export const getInvoicesByDateRange = async (req, res) => {
+	const { startDate, endDate } = req.query;
+	try {
+		const rows = await db_getInvoicesByDate(startDate, endDate);
+		res.status(200).json({
+			count: rows.length,
+			data: rows,
+		});
 	} catch (err) {
 		console.log(err);
 		return res.status(404).send(err.code);

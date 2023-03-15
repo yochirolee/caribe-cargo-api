@@ -1,11 +1,16 @@
 import express from "express";
 
-import { getInvoices, getInvoicesById } from "../controllers/invoicesController.js";
+import {
+	getInvoices,
+	getInvoicesByDateRange,
+	getInvoicesById,
+} from "../controllers/invoicesController.js";
 
 const router = express.Router();
 
-router.get("/", getInvoices);
+router.get("/byDateRange", getInvoicesByDateRange);
 router.get("/:id", getInvoicesById);
+router.get("/", getInvoices);
 //router.post("/:id", createProduct);
 //router.get("/:id", updateProduct);
 //router.get("/:id", deleteProduct);
