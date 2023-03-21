@@ -58,7 +58,6 @@ export const getContainersStopsByRecievers = async (req, res) => {
 
 export const getReportByContainerId = async (req, res) => {
 	const { id } = req.params;
-	console.log(res.params);
 	try {
 		const rows = await db_getReportByContainerId(id);
 		res.status(200).json(rows);

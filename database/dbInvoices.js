@@ -8,7 +8,7 @@ export const db_getInvoices = async () => {
 
 export const db_getInvoiceById = async (InvoiceId) => {
 	return await query(
-		"SELECT cod_envio as InvoiceId,cliente as CustomerId,destinatario as RecieverId,agencias.nombre as Agency FROM `orden_envio` INNER JOIN agencias ON agencias.id=orden_envio.agencia where cod_envio=?",
+		"SELECT cod_envio as InvoiceId,cliente as CustomerId,destinatario as RecieverId,agencias.nombre as Agency,fecha as InvoiceDate FROM `orden_envio` INNER JOIN agencias ON agencias.id=orden_envio.agencia where cod_envio=?",
 		[InvoiceId],
 	);
 };
@@ -20,7 +20,12 @@ export const db_getItemsInvoiceById = async (InvoiceId) => {
 };
 
 export const db_getInvoicesByDate = async (startDate, endDate) => {
+	console.log(startDate,endDate)
 	return await query(
 		`SELECT *  FROM u373067935_cte.listado_ordenes where fecha between '${startDate}' and '${endDate}'`,
 	);
 };
+
+export const db_getInvoicesByContainerId=async(ContainerId)=>{
+	return await query("SELECT distinct InvoiceId, InvoiceDate,AgencyId,AgencyName,CustomerId,RecieverId FROM tracking WHERE ContainerId=?", [ContainerId]);
+}

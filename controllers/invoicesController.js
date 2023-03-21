@@ -40,6 +40,7 @@ export const getInvoicesById = async (req, res) => {
 };
 
 export const getInvoicesByDateRange = async (req, res) => {
+	console.log(req.query,"query")
 	const { startDate, endDate } = req.query;
 	try {
 		const rows = await db_getInvoicesByDate(startDate, endDate);

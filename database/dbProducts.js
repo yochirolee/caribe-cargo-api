@@ -23,3 +23,7 @@ export const db_findProducts = async (ListHBL) => {
 export const db_getProductsByContainerId = async (ContainerId) => {
 	return await query("SELECT * FROM tracking WHERE ContainerId=?", [ContainerId]);
 };
+
+export const db_getInvoicesByContainerId = async (ContainerId) => {
+	return await query("SELECT InvoiceId,InvoiceDate,AgencyId,AgencyName FROM tracking WHERE ContainerId=?", [ContainerId]);
+};

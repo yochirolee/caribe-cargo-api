@@ -33,6 +33,7 @@ export const db_getRecieverById = async (id) => {
 		result.reparto;
 	reciever.Province = state.Province;
 	reciever.Municipality = city.Municipality;
+	console.log(reciever,"Reciever")
 	return reciever;
 };
 
