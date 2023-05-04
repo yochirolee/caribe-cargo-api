@@ -23,6 +23,7 @@ export const getInvoices = async (req, res) => {
 
 export const getInvoicesById = async (req, res) => {
 	const { id } = req.params;
+	console.log(id,"InvoiceID")
 	try {
 		const [rows] = await db_getInvoiceById(id);
 		rows.Products = await db_getItemsInvoiceById(id);

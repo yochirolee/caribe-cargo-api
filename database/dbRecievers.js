@@ -14,26 +14,25 @@ export const db_getRecieverById = async (id) => {
 	]);
 	const reciever = {};
 
-	reciever.Name = result.nombre + " " + result.nombre2;
-	reciever.LastName = result.apellido + " " + result.apellido2;
-	reciever.Mobile = result.cel;
-	reciever.Phone = result.tel;
-	reciever.CI = result.documento;
-	reciever.Passport = result.pasaporte;
+	reciever.Name = result?.nombre + " " + result?.nombre2;
+	reciever.LastName = result?.apellido + " " + result?.apellido2;
+	reciever.Mobile = result?.cel;
+	reciever.Phone = result?.tel;
+	reciever.CI = result?.documento;
+	reciever.Passport = result?.pasaporte;
 	reciever.Address =
-		result.cll +
+		result?.cll +
 		" " +
-		result.entre_cll +
+		result?.entre_cll +
 		" " +
 		"No: " +
-		result.no +
+		result?.no +
 		" " +
-		result.apto +
+		result?.apto +
 		" " +
-		result.reparto;
-	reciever.Province = state.Province;
-	reciever.Municipality = city.Municipality;
-	console.log(reciever,"Reciever")
+		result?.reparto;
+	reciever.Province = state?.Province;
+	reciever.Municipality = city?.Municipality;
 	return reciever;
 };
 
