@@ -8,6 +8,7 @@ import itemsRoutes from "./routes/itemsRoutes.js";
 import containersRoutes from "./routes/containersRoutes.js";
 import palletsRoutes from "./routes/palletsRoutes.js";
 import trackingRoutes from "./routes/trackingRoutes.js";
+import airGuidesRoutes from "./routes/airGuidesRoutes.js";
 
 const app = express();
 const port = 3000;
@@ -34,6 +35,7 @@ app.use("/api/items", itemsRoutes);
 app.use("/api/containers", containersRoutes);
 app.use("/api/pallets", palletsRoutes);
 app.use("/api/tracking", trackingRoutes);
+app.use("/api/airguides", airGuidesRoutes);
 
 app.listen(port, () => {
 	console.log(`Server is Running on port:${port}`);

@@ -34,6 +34,7 @@ export const getProductById = async (req, res) => {
 
 export const findProducts = async (req, res) => {
 	const hbl = req.body;
+	console.log(req.body,"RESULT")
 	try {
 		const rows = await db_findProducts(hbl);
 		if (rows) {
