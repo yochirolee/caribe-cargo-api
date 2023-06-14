@@ -29,6 +29,7 @@ export const db_updateAirGuide = async (airGuide) => {
 
 export const db_deleteAirGuide = async (id) => {
 	const result = await query("DELETE FROM air_guides WHERE id=?", [id]);
+	if (result.affectedRows === 0) throw new Error("Air Guide not found " + id);
 	return result;
 };
 

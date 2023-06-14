@@ -6,7 +6,7 @@ import {
 } from "../database/dbAirGuides.js";
 
 export const getAirGuides = async (req, res) => {
-    console.log("getAirGuides");
+	console.log("getAirGuides");
 	try {
 		const result = await db_getAirGuides();
 		res.status(200).json({ data: result });
@@ -22,7 +22,7 @@ export const createAirGuide = async (req, res) => {
 		const result = await db_createNewAirGuide(req.body);
 		res.status(200).json({ data: result });
 	} catch (err) {
-		console.log(err);
+		console.log(err.message);
 		res.status(400).json(err);
 	}
 };
@@ -39,12 +39,12 @@ export const updateAirGuide = async (req, res) => {
 
 export const deleteAirGuide = async (req, res) => {
 	const { id } = req.params;
-	console.log(id, "id");
+	if (!id) return res.status(400).json({ message: "id is required" });
 	try {
 		const result = await db_deleteAirGuide(id);
 		res.status(200).json({ data: result });
 	} catch (err) {
-		console.log(err);
+		console.log(err, "errpr m");
 		res.status(400).json(err);
 	}
 };
