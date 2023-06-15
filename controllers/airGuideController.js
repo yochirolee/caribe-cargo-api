@@ -3,6 +3,7 @@ import {
 	db_createNewAirGuide,
 	db_updateAirGuide,
 	db_deleteAirGuide,
+	db_getCurrentAirGuide,
 } from "../database/dbAirGuides.js";
 
 export const getAirGuides = async (req, res) => {
@@ -16,6 +17,15 @@ export const getAirGuides = async (req, res) => {
 	}
 };
 
+export const getCurrentAirGuide = async (req, res) => {
+	try {
+		const result = await db_getCurrentAirGuide();
+		res.status(200).json(result);
+	} catch (err) {
+		console.log(err);
+		res.status(400).json(err);
+	}
+};
 export const createAirGuide = async (req, res) => {
 	console.log(res.body, "res.body");
 	try {

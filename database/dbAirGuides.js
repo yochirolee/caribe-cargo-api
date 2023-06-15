@@ -40,3 +40,8 @@ export const db_updateAirGuideCurrentWeight = async (id, currentWeight) => {
 	]);
 	return result;
 };
+
+export const db_getCurrentAirGuide = async () => {
+	const result = await query("SELECT  * FROM air_guides WHERE is_active=1 LIMIT 1");
+	return result;
+};
