@@ -4,6 +4,7 @@ import {
 	db_updateAirGuide,
 	db_deleteAirGuide,
 	db_getCurrentAirGuide,
+	db_setCurrentAirGuide,
 } from "../database/dbAirGuides.js";
 
 export const getAirGuides = async (req, res) => {
@@ -46,6 +47,19 @@ export const updateAirGuide = async (req, res) => {
 		res.status(400).json(err);
 	}
 };
+
+export const  setCurrentAirGuide= async (req, res) => {
+	const { id } = req.params;
+	if (!id) return res.status(400).json({ message: "id is required" });
+	try {
+		const result = await db_setCurrentAirGuide(id);
+		res.status(200).json({ data: result });
+	} catch (err) {
+		console.log(err, "errpr m");
+		res.status(400).json(err);
+	}
+};
+
 
 export const deleteAirGuide = async (req, res) => {
 	const { id } = req.params;
