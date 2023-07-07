@@ -20,6 +20,12 @@ export const db_findProducts = async (ListHBL) => {
 	return await query("SELECT * from tracking where HBL IN (" + parseHblList + ")");
 };
 
+export const db_getAllInvoicesByInvoicesList = async (invoicesList) => {
+	const parseInvoicesList = invoicesList?.map((invoice) => "'" + invoice.InvoiceId + "'");
+	console.log(parseInvoicesList, "parseInvoicesList");
+	return await query("SELECT * FROM tracking WHERE InvoiceId IN (" + parseInvoicesList + ")");
+};
+
 export const db_getProductsByContainerId = async (ContainerId) => {
 	return await query("SELECT * FROM tracking WHERE ContainerId=?", [ContainerId]);
 };

@@ -1,5 +1,10 @@
 import { db_getCustomersById } from "../database/dbCustomers.js";
-import { db_getProducts, db_getProductById, db_findProducts } from "../database/dbProducts.js";
+import {
+	db_getProducts,
+	db_getProductById,
+	db_findProducts,
+	db_getAllInvoicesByInvoicesList,
+} from "../database/dbProducts.js";
 import { db_getRecieverById } from "../database/dbRecievers.js";
 
 export const getProducts = async (req, res) => {
@@ -34,11 +39,25 @@ export const getProductById = async (req, res) => {
 
 export const findProducts = async (req, res) => {
 	const hbl = req.body;
-	console.log(req.body,"RESULT")
+	console.log(req.body, "RESULT");
 	try {
 		const rows = await db_findProducts(hbl);
 		if (rows) {
 			res.status(200).json({ data: rows });
+		}
+	} catch (err) {
+		console.log(err);
+		return res.status(404).send(err.code);
+	}
+};
+
+export const findInvoices = async (req, res) => {
+	const invoicesList = req.body;
+
+	try {
+		const rows = await db_getAllInvoicesByInvoicesList(invoicesList);
+		if (rows) {
+			res.status(200).send(rows);
 		}
 	} catch (err) {
 		console.log(err);
